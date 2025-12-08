@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Hand Gesture Paint UI</title>
+    <link rel="stylesheet" href="sytlistjeans.css">
+</head>
+<body>
+    <h1>Paint balls</h1>
+    <div class="subtitle">some name</div>
+    <div class="container">
+        
+        <div class="tool">
+            <div class="tools">
+                <label>Colors</label>
+                <div class="color-options">
+                    <div class="color-btn" style="background-color: #0000ff;" onclick="document.getElementById('colorPicker').value='#0000ff'"></div>
+                    <div class="color-btn" style="background-color: #ff0000;" onclick="document.getElementById('colorPicker').value='#ff0000'"></div>
+                    <div class="color-btn" style="background-color: #008000;" onclick="document.getElementById('colorPicker').value='#008000'"></div>
+                    <div class="color-btn" style="background-color: #ffff00;" onclick="document.getElementById('colorPicker').value='#ffff00'"></div>
+                    <div class="color-btn" style="background-color: #000000;" onclick="document.getElementById('colorPicker').value='#000000'"></div>
+                    <input type="color" id="colorPicker" value="#0000ff" style="display: none;">
+                </div>
+            </div>
+
+            <div class="tools">
+                <label>Pencil</label>
+                <button class="tool-btn" onclick="activatePencil()">✏️</button>
+            </div>
+
+            <div class="tools">
+                <label>Brush</label>
+                <button class="tool-btn" onclick="activateBrush()">🖌️</button>
+            </div>
+
+            <div class="tools">
+                <label>Shapes</label>
+                <select id="shapeSelect">
+                    <option value="none">Select one</option>
+                    <option value="star">Star</option>
+                    <option value="rectangle">Rectangle</option>
+                    <option value="square">Sqaure</option>
+                    <option value="circle">Circle</option>
+                </select>
+            </div>
+
+            <div class="tools">
+                <label>Actions</label>
+                <button class="clear-btn" title="Clear Canvas">
+                🗑️
+                </button>
+            </div>
+        </div>
+
+        <div class="canvas-container">
+            <canvas id="paintCanvas"></canvas>
+        </div>
+    </div>
+
+    <script src="pencil_logic.js"></script>
+</body>
+</html>
