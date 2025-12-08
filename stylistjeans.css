@@ -5,9 +5,9 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 20px;
+            padding: 0.14%;
             margin: 0;
-            min-height: 69vh;
+            min-height: 100%;
             overflow: hidden;
         }
 
@@ -31,7 +31,7 @@
             border-radius: 16px;
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
             width: 95%;
-            max-width: 1600px;
+            max-width: 100%;
             border: 1px solid #e2e8f0;
             display: flex;
             flex-direction: column;
@@ -40,7 +40,7 @@
 
         .tool {
             display: flex;
-            flex-wrap: wrap;
+            flex-wrap: flex;
             justify-content: center;
             align-items: flex-start;
             gap: 30px;
@@ -153,7 +153,7 @@
 
         .canvas-container {
             width: 100%;
-            height: 67vh;
+            height: 60vh;
             border: 2px solid #333333;
             border-radius: 12px;
             position: relative;
