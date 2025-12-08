@@ -103,13 +103,13 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.2s;
+            transition: all 0.5s ease;
         }
 
         .clear-btn:hover {
             background-color: #392d2d;
             border-color: #e53e3e;
-            transform: scale(1.05);
+            transform: rotate(360deg) scale(1.2);
         }
 
         .save-btn {
@@ -123,13 +123,13 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.2s;
+            transition: all 0.5s ease;
         }
 
         .save-btn:hover {
             background-color: #2a3828;
             border-color: #49e53e;
-            transform: scale(1.05);
+            transform: rotate(360deg) scale(1.2);
         }
 
         .tool-btn {
@@ -141,13 +141,13 @@
             color: white;
             font-size: 20px;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all 0.5s ease;
         }
 
         .tool-btn:hover {
             border-color: #4299e1;
             background-color: #27363f;
-            transform: scale(1.05);
+            transform: rotate(360deg) scale(1.2);
         }
 
         .canvas-container {
