@@ -98,7 +98,6 @@
             border-radius: 12px;
             border: 2px solid #cbd5e0;
             background: white;
-            color: #e53e3e;
             font-size: 20px;
             cursor: pointer;
             display: flex;
@@ -113,13 +112,33 @@
             transform: scale(1.05);
         }
 
-        .tool-btn {
-            width: 60px;
-            height: 60px;
+        .save-btn {
+            width: 50px;
+            height: 50px;
             border-radius: 12px;
             border: 2px solid #cbd5e0;
             background: white;
-            font-size: 24px;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .save-btn:hover {
+            background-color: #e7ffe3;
+            border-color: #49e53e;
+            transform: scale(1.05);
+        }
+
+        .tool-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            border: 2px solid #cbd5e0;
+            background: white;
+            font-size: 20px;
             cursor: pointer;
             transition: all 0.2s;
         }
@@ -127,6 +146,7 @@
         .tool-btn:hover {
             border-color: #4299e1;
             background-color: #ebf8ff;
+            transform: scale(1.05);
         }
 
         .canvas-container {
@@ -139,6 +159,11 @@
             background-image: radial-gradient(#cbd5e0 1.5px, transparent 1.5px);
             background-size: 24px 24px;
             overflow: hidden;
+        }
+
+        .infolabel{
+            color: #1a202c;
+            font-size: 20px;
         }
 
         canvas {

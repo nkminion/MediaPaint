@@ -7,7 +7,9 @@ canvas.height = canvas.offsetHeight;
 
 let isDrawing = false;
 let brushWidth = 5;
-let currentTool = "none"; 
+let currentTool = "none";
+
+document.getElementById("brush-size").innerHTML = brushWidth
 function activatePencil() {
     currentTool = "pencil";
 }
