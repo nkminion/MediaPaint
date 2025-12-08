@@ -18,6 +18,15 @@ function ClearCanvas()
     ctx.clearRect(0,0,canvas.width,canvas.height);
 }
 
+function SaveCanvas()
+{
+    let Image = canvas.toDataURL("image/png");
+    const ImageElement = document.createElement("a");
+    ImageElement.href = Image;
+    ImageElement.download = "MediaPaintCanvas.png"
+    ImageElement.click()
+}
+
 function activateSolid() {
     currentTool = "solid";
     segmentSize = 0;
