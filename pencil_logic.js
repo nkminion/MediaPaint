@@ -7,25 +7,53 @@ canvas.height = canvas.offsetHeight;
 
 let isDrawing = false;
 let brushWidth = 5;
+let segmentSize = 0;
 let currentTool = "none";
 
 document.getElementById("brush-size").innerHTML = brushWidth
-function activatePencil() {
-    currentTool = "pencil";
+document.getElementById("segment-size").innerHTML = segmentSize
+
+function ClearCanvas()
+{
+    ctx.clearRect(0,0,canvas.width,canvas.height);
 }
 
-function activateBrush() {
-    currentTool = "brush";
+function activateSolid() {
+    currentTool = "solid";
+    segmentSize = 0;
+    document.getElementById("segment-size").innerHTML = segmentSize
+}
+
+function activateDotted() {
+    currentTool = "dotted";
+    segmentSize = 15;
+    document.getElementById("segment-size").innerHTML = segmentSize
 }
 
 const startDraw = () => {
-    if(currentTool !== "pencil") return;
-    isDrawing = true;
-    ctx.beginPath(); 
-    ctx.lineWidth = brushWidth;
-    ctx.strokeStyle = colorPicker.value; 
-    ctx.lineCap = "round"; 
-    ctx.lineJoin = "round";
+    if(currentTool === "solid")
+    {
+        isDrawing = true;
+        ctx.beginPath(); 
+        ctx.lineWidth = brushWidth;
+        ctx.strokeStyle = colorPicker.value; 
+        ctx.lineCap = "round"; 
+        ctx.lineJoin = "round";
+    }
+    else if (currentTool === "dotted")
+    {
+        isDrawing = true;
+        ctx.beginPath(); 
+        ctx.lineWidth = brushWidth;
+        ctx.strokeStyle = colorPicker.value; 
+        ctx.setLineDash([segmentSize,segmentSize]);
+        ctx.lineCap = "round"; 
+        ctx.lineJoin = "round";
+    }
+    else
+    {
+        return;
+    }
 }
 
 const drawing = (e) => {

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Hand Gesture Paint UI</title>
+    <title>MediaPaint</title>
     <link rel="stylesheet" href="sytlistjeans.css">
 </head>
 <body>
-    <h1>Paint balls</h1>
-    <div class="subtitle">some name</div>
+    <h1>MediaPaint</h1>
+    <div class="subtitle">draw</div>
     <div class="container">
         
         <div class="tool">
@@ -15,24 +15,24 @@
                 <div class="color-options">
                     <div class="color-btn" style="background-color: #0000ff;" onclick="document.getElementById('colorPicker').value='#0000ff'"></div>
                     <div class="color-btn" style="background-color: #ff0000;" onclick="document.getElementById('colorPicker').value='#ff0000'"></div>
-                    <div class="color-btn" style="background-color: #008000;" onclick="document.getElementById('colorPicker').value='#008000'"></div>
+                    <div class="color-btn" style="background-color: #00ff00;" onclick="document.getElementById('colorPicker').value='#00ff00'"></div>
                     <div class="color-btn" style="background-color: #ffff00;" onclick="document.getElementById('colorPicker').value='#ffff00'"></div>
-                    <div class="color-btn" style="background-color: #000000;" onclick="document.getElementById('colorPicker').value='#000000'"></div>
+                    <div class="color-btn" style="background-color: #ffffff;" onclick="document.getElementById('colorPicker').value='#000000'"></div>
                     <input type="color" id="colorPicker" value="#0000ff" style="display: none;">
                 </div>
             </div>
 
             <div class="tools">
-                <label>Pencil</label>
-                <button class="tool-btn" onclick="activatePencil()">✏️</button>
+                <label>Solid</label>
+                <button class="tool-btn" onclick="activateSolid()">┃</button>
             </div>
 
             <div class="tools">
-                <label>Brush</label>
-                <button class="tool-btn" onclick="activateBrush()">🖌️</button>
+                <label>Dotted</label>
+                <button class="tool-btn" onclick="activateDotted()">┇</button>
             </div>
 
-            <div class="tools">
+            <!-- <div class="tools">
                 <label>Shapes</label>
                 <select id="shapeSelect">
                     <option value="none">Select one</option>
@@ -41,11 +41,11 @@
                     <option value="square">Sqaure</option>
                     <option value="circle">Circle</option>
                 </select>
-            </div>
+            </div> -->
 
             <div class="tools">
                 <label>Clear</label>
-                <button class="clear-btn" title="Clear Canvas">
+                <button class="clear-btn" title="Clear Canvas" onclick="ClearCanvas()">
                 🗑️
                 </button>
             </div>
@@ -64,7 +64,7 @@
 
             <div class="tools">
                 <label>Segment Size</label>
-                <label id="brush-size" class="infolabel"></label>
+                <label id="segment-size" class="infolabel"></label>
             </div>
         </div>
 
