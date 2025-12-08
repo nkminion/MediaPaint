@@ -70,15 +70,15 @@
         .color-btn {
             width: 30px;
             height: 30px;
-            border-radius: 50%;
+            border-radius: 8px;
             border: 2px solid rgb(0, 0, 0);
             box-shadow: 0 0 0 2px #4b4e51;
             cursor: pointer;
-            transition: transform 0.2s;
+            transition: transform 0.5s;
         }
 
         .color-btn:hover {
-            transform: scale(1.2);
+            transform: rotate(180deg) scale(1.2);
             box-shadow: 0 0 0 2px #4299e1;
         }
 
