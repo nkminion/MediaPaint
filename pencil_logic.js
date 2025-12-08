@@ -2,13 +2,16 @@ const canvas = document.getElementById("paintCanvas");
 const ctx = canvas.getContext("2d");
 const colorPicker = document.getElementById("colorPicker");
 
+const gestureOutput = document.getElementById("gesture-output");
+const cursorElement = document.getElementById("virtual-cursor");
+
 canvas.width = canvas.offsetWidth;
 canvas.height = canvas.offsetHeight;
 
 let isDrawing = false;
 let brushWidth = 5;
 let segmentSize = 0;
-let currentTool = "none";
+let currentTool = "solid";
 
 document.getElementById("brush-size").innerHTML = brushWidth
 document.getElementById("segment-size").innerHTML = segmentSize
@@ -74,6 +77,65 @@ const drawing = (e) => {
 const stopDraw = () => {
     isDrawing = false;
 }
+
+function drawAt(x, y) {
+
+}
+
+function eraseAt(x, y) {
+    
+}
+
 canvas.addEventListener("mousedown", startDraw);
 canvas.addEventListener("mousemove", drawing);
 canvas.addEventListener("mouseup", stopDraw);
+
+cursorElement.style.position = "fixed"; 
+cursorElement.style.pointerEvents = "none";
+cursorElement.style.zIndex = "9999";
+
+function update() {
+    if (typeof window.HandTracker !== "undefined") {
+
+        const xNorm = window.HandTracker.x;
+        const yNorm = window.HandTracker.y;
+        const gesture = window.HandTracker.gesture;
+        const isHand = window.HandTracker.isHandPresent();
+
+        if (isHand) {
+            cursorElement.style.display = "block";
+            
+            const screenX = Math.max(0, Math.min(1, xNorm)) * window.innerWidth;
+            const screenY = Math.max(0, Math.min(1, yNorm)) * window.innerHeight;
+
+            cursorElement.style.left = screenX + "px";
+            cursorElement.style.top = screenY + "px";
+            
+            gestureOutput.innerText = "Gesture: " + (gesture || "none");
+
+            const canvasRect = canvas.getBoundingClientRect();
+            const canvasX = screenX - canvasRect.left;
+            const canvasY = screenY - canvasRect.top;
+
+            if (gesture === "write") {
+                cursorElement.style.backgroundColor = "cyan";
+                drawAt(canvasX, canvasY);
+            } 
+            else if (gesture === "erase") {
+                cursorElement.style.backgroundColor = "red";
+                eraseAt(canvasX, canvasY);
+            } 
+            else {
+                cursorElement.style.backgroundColor = "yellow";
+                ctx.beginPath();
+            }
+        } else {
+            cursorElement.style.display = "none";
+            gestureOutput.innerText = "Gesture: none";
+        }
+    }
+
+    requestAnimationFrame(update);
+}
+
+requestAnimationFrame(update);

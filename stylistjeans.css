@@ -174,3 +174,12 @@
             height: 100%;
             cursor: crosshair;
         }
+
+        #virtual-cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background-color: #49e53e;
+            border: 2px snow;
+            
+        }

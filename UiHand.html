@@ -6,7 +6,6 @@
 </head>
 <body>
     <h1>MediaPaint</h1>
-    <div class="subtitle">draw</div>
     <div class="container">
         
         <div class="tool">
@@ -80,6 +79,19 @@
         </div>
     </div>
 
+    <div id="gesture-output" style="font-size: 24px; margin: 10px; color: white;">
+        Gesture: none
+    </div>
+
+    <div id="virtual-cursor"></div>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"></script>
+
     <script src="pencil_logic.js"></script>
+    <script src="handTracking.js"></script>
+
 </body>
 </html>
