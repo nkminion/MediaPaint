@@ -36,7 +36,8 @@ const startDraw = () => {
         isDrawing = true;
         ctx.beginPath(); 
         ctx.lineWidth = brushWidth;
-        ctx.strokeStyle = colorPicker.value; 
+        ctx.strokeStyle = colorPicker.value;
+        ctx.setLineDash([]) 
         ctx.lineCap = "round"; 
         ctx.lineJoin = "round";
     }
