@@ -38,13 +38,11 @@ hands.onResults(results => {
     window.HandTracker.isHandPresent = () => true;
 
     const indexUp = landmarks[8].y < landmarks[6].y;
-    const pinkyUp = landmarks[20].y < landmarks[18].y;
+    const middleUp = landmarks[12].y < landmarks[10].y;
 
-    if (indexUp && !pinkyUp) {
+    if (indexUp && middleUp) {
         window.HandTracker.gesture = "write";
-    } else if (indexUp && pinkyUp) {
-        window.HandTracker.gesture = "erase";
-    } else {
+    } else if (indexUp && !middleUp) {
         window.HandTracker.gesture = "hover";
     }
 });

@@ -16,13 +16,11 @@ let currentTool = "solid";
 document.getElementById("brush-size").innerHTML = brushWidth
 document.getElementById("segment-size").innerHTML = segmentSize
 
-function ClearCanvas()
-{
-    ctx.clearRect(0,0,canvas.width,canvas.height);
+function ClearCanvas() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
-function SaveCanvas()
-{
+function SaveCanvas() {
     let Image = canvas.toDataURL("image/png");
     const ImageElement = document.createElement("a");
     ImageElement.href = Image;
@@ -43,34 +41,31 @@ function activateDotted() {
 }
 
 const startDraw = () => {
-    if(currentTool === "solid")
-    {
+    if (currentTool === "solid") {
         isDrawing = true;
-        ctx.beginPath(); 
+        ctx.beginPath();
         ctx.lineWidth = brushWidth;
         ctx.strokeStyle = colorPicker.value;
-        ctx.setLineDash([]) 
-        ctx.lineCap = "round"; 
+        ctx.setLineDash([])
+        ctx.lineCap = "round";
         ctx.lineJoin = "round";
     }
-    else if (currentTool === "dotted")
-    {
+    else if (currentTool === "dotted") {
         isDrawing = true;
-        ctx.beginPath(); 
+        ctx.beginPath();
         ctx.lineWidth = brushWidth;
-        ctx.strokeStyle = colorPicker.value; 
-        ctx.setLineDash([segmentSize,segmentSize]);
-        ctx.lineCap = "round"; 
+        ctx.strokeStyle = colorPicker.value;
+        ctx.setLineDash([segmentSize, segmentSize]);
+        ctx.lineCap = "round";
         ctx.lineJoin = "round";
     }
-    else
-    {
+    else {
         return;
     }
 }
 
 const drawing = (e) => {
-    if(!isDrawing) return; 
+    if (!isDrawing) return;
     ctx.lineTo(e.offsetX, e.offsetY);
     ctx.stroke();
 }
@@ -83,14 +78,14 @@ function drawAt(x, y) {
 }
 
 function eraseAt(x, y) {
-    
+
 }
 
 canvas.addEventListener("mousedown", startDraw);
 canvas.addEventListener("mousemove", drawing);
 canvas.addEventListener("mouseup", stopDraw);
 
-cursorElement.style.position = "fixed"; 
+cursorElement.style.position = "fixed";
 cursorElement.style.pointerEvents = "none";
 cursorElement.style.zIndex = "9999";
 
@@ -104,13 +99,13 @@ function update() {
 
         if (isHand) {
             cursorElement.style.display = "block";
-            
+
             const screenX = Math.max(0, Math.min(1, xNorm)) * window.innerWidth;
             const screenY = Math.max(0, Math.min(1, yNorm)) * window.innerHeight;
 
             cursorElement.style.left = screenX + "px";
             cursorElement.style.top = screenY + "px";
-            
+
             gestureOutput.innerText = "Gesture: " + (gesture || "none");
 
             const canvasRect = canvas.getBoundingClientRect();
@@ -120,11 +115,7 @@ function update() {
             if (gesture === "write") {
                 cursorElement.style.backgroundColor = "cyan";
                 drawAt(canvasX, canvasY);
-            } 
-            else if (gesture === "erase") {
-                cursorElement.style.backgroundColor = "red";
-                eraseAt(canvasX, canvasY);
-            } 
+            }
             else {
                 cursorElement.style.backgroundColor = "yellow";
                 ctx.beginPath();
