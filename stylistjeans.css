@@ -82,6 +82,11 @@
             box-shadow: 0 0 0 2px #4299e1;
         }
 
+        .color-btn-hover {
+            transform: rotate(180deg) scale(1.2);
+            box-shadow: 0 0 0 2px #4299e1;
+        }
+
         select {
             padding: 8px 12px;
             border-radius: 8px;
@@ -113,6 +118,12 @@
             transform: rotate(360deg) scale(1.2);
         }
 
+        .clear-btn-hover {
+            background-color: #392d2d;
+            border-color: #e53e3e;
+            transform: rotate(360deg) scale(1.2);
+        }
+
         .save-btn {
             width: 50px;
             height: 50px;
@@ -133,6 +144,12 @@
             transform: rotate(360deg) scale(1.2);
         }
 
+        .save-btn-hover {
+            background-color: #2a3828;
+            border-color: #49e53e;
+            transform: rotate(360deg) scale(1.2);
+        }
+
         .tool-btn {
             width: 50px;
             height: 50px;
@@ -146,6 +163,12 @@
         }
 
         .tool-btn:hover {
+            border-color: #4299e1;
+            background-color: #27363f;
+            transform: rotate(360deg) scale(1.2);
+        }
+
+        .tool-btn-hover {
             border-color: #4299e1;
             background-color: #27363f;
             transform: rotate(360deg) scale(1.2);
@@ -177,9 +200,9 @@
 
         #virtual-cursor {
             position: fixed;
-            width: 20px;
-            height: 20px;
+            width: 10px;
+            height: 10px;
             background-color: #49e53e;
             border: 2px snow;
-            
+            border-radius: 50%;
         }

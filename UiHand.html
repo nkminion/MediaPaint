@@ -12,28 +12,28 @@
             <div class="tools">
                 <label>Colors</label>
                 <div class="color-options">
-                    <div class="color-btn" style="background-color: #0000ff;" onclick="document.getElementById('colorPicker').value='#0000ff'"></div>
-                    <div class="color-btn" style="background-color: #ff0000;" onclick="document.getElementById('colorPicker').value='#ff0000'"></div>
-                    <div class="color-btn" style="background-color: #00ff00;" onclick="document.getElementById('colorPicker').value='#00ff00'"></div>
-                    <div class="color-btn" style="background-color: #ffff00;" onclick="document.getElementById('colorPicker').value='#ffff00'"></div>
-                    <div class="color-btn" style="background-color: #ffffff;" onclick="document.getElementById('colorPicker').value='#ffffff'"></div>
+                    <div id="blue-color" class="color-btn" style="background-color: #0000ff;" onclick="document.getElementById('colorPicker').value='#0000ff'"></div>
+                    <div id="red-color" class="color-btn" style="background-color: #ff0000;" onclick="document.getElementById('colorPicker').value='#ff0000'"></div>
+                    <div id="green-color" class="color-btn" style="background-color: #00ff00;" onclick="document.getElementById('colorPicker').value='#00ff00'"></div>
+                    <div id="yellow-color" class="color-btn" style="background-color: #ffff00;" onclick="document.getElementById('colorPicker').value='#ffff00'"></div>
+                    <div id="white-color" class="color-btn" style="background-color: #ffffff;" onclick="document.getElementById('colorPicker').value='#ffffff'"></div>
                     <input type="color" id="colorPicker" value="#ffffff" style="display: none;">
                 </div>
             </div>
 
             <div class="tools">
                 <label>Solid</label>
-                <button class="tool-btn" onclick="activateSolid()">┃</button>
+                <button id="solid" class="tool-btn" onclick="activateSolid()">┃</button>
             </div>
 
             <div class="tools">
                 <label>Dotted</label>
-                <button class="tool-btn" onclick="activateDotted()">┇</button>
+                <button id="dotted" class="tool-btn" onclick="activateDotted()">┇</button>
             </div>
 
             <div class="tools">
                 <label>Eraser</label>
-                <button class="tool-btn" title="Eraser" onclick="activateEraser()">
+                <button id="eraser" class="tool-btn" title="Eraser" onclick="activateEraser()">
                 🧽
                 </button>
             </div>
@@ -51,14 +51,14 @@
 
             <div class="tools">
                 <label>Clear</label>
-                <button class="clear-btn" title="Clear Canvas" onclick="ClearCanvas()">
+                <button id="clear" class="clear-btn" title="Clear Canvas" onclick="ClearCanvas()">
                 🗑️
                 </button>
             </div>
 
             <div class="tools">
                 <label>Save</label>
-                <button class="save-btn" title="Save Canvas" onclick="SaveCanvas()">
+                <button id="save" class="save-btn" title="Save Canvas" onclick="SaveCanvas()">
                 💾
                 </button>
             </div>

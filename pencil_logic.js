@@ -44,7 +44,47 @@ function activateDotted() {
 
 function activateEraser() {
     currentTool = "eraser";
+    segmentSize = 0;
+    document.getElementById("segment-size").innerHTML = segmentSize;
     document.getElementById("tool-status").innerHTML = "Eraser Size";
+}
+
+function checkSelect(Xpos,Ypos) {
+    let hoverElement = document.elementFromPoint(Xpos,Ypos);
+    if (hoverElement === null) return;
+
+    let hoveredElements = document.getElementsByClassName('color-btn-hover');
+    while (hoveredElements.length)
+        hoveredElements[0].classList.remove('color-btn-hover');
+    hoveredElements = document.getElementsByClassName('clear-btn-hover');
+    while (hoveredElements.length)
+        hoveredElements[0].classList.remove('clear-btn-hover');
+    hoveredElements = document.getElementsByClassName('save-btn-hover');
+    while (hoveredElements.length)
+        hoveredElements[0].classList.remove('save-btn-hover');
+    hoveredElements = document.getElementsByClassName('save-btn-hover');
+    while (hoveredElements.length)
+        hoveredElements[0].classList.remove('save-btn-hover');
+    hoveredElements = document.getElementsByClassName('tool-btn-hover');
+    while (hoveredElements.length)
+        hoveredElements[0].classList.remove('tool-btn-hover');
+    
+    if (hoverElement.classList.contains("tool-btn"))
+    {
+        hoverElement.classList.add("tool-btn-hover");
+    }
+    else if (hoverElement.classList.contains("save-btn"))
+    {
+        hoverElement.classList.add("save-btn-hover");
+    }
+    else if (hoverElement.classList.contains("clear-btn"))
+    {
+        hoverElement.classList.add("clear-btn-hover");
+    }
+    else if (hoverElement.classList.contains("color-btn"))
+    {
+        hoverElement.classList.add("color-btn-hover");
+    }
 }
 
 const startDraw = () => {
@@ -134,6 +174,10 @@ function update() {
             if (gesture === "write") {
                 cursorElement.style.backgroundColor = "cyan";
                 drawAt(canvasX, canvasY);
+            }
+            else if (gesture === "hover") {
+                cursorElement.style.backgroundColor = "green";
+                checkSelect(screenX,screenY);
             }
             else {
                 cursorElement.style.backgroundColor = "yellow";
