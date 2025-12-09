@@ -13,7 +13,7 @@ let brushWidth = 5;
 let segmentSize = 0;
 let currentTool = "solid";
 
-document.getElementById("brush-size").innerHTML = brushWidth
+document.getElementById("tool-size").innerHTML = brushWidth
 document.getElementById("segment-size").innerHTML = segmentSize
 
 function ClearCanvas() {
@@ -31,17 +31,26 @@ function SaveCanvas() {
 function activateSolid() {
     currentTool = "solid";
     segmentSize = 0;
-    document.getElementById("segment-size").innerHTML = segmentSize
+    document.getElementById("segment-size").innerHTML = segmentSize;
+    document.getElementById("tool-status").innerHTML = "Brush Size";
 }
 
 function activateDotted() {
     currentTool = "dotted";
     segmentSize = 15;
-    document.getElementById("segment-size").innerHTML = segmentSize
+    document.getElementById("segment-size").innerHTML = segmentSize;
+    document.getElementById("tool-status").innerHTML = "Brush Size";
+}
+
+function activateEraser() {
+    currentTool = "eraser";
+    document.getElementById("tool-status").innerHTML = "Eraser Size";
 }
 
 const startDraw = () => {
-    if (currentTool === "solid") {
+    if(currentTool === "solid")
+    {
+        ctx.globalCompositeOperation="source-over";
         isDrawing = true;
         ctx.beginPath();
         ctx.lineWidth = brushWidth;
@@ -50,7 +59,9 @@ const startDraw = () => {
         ctx.lineCap = "round";
         ctx.lineJoin = "round";
     }
-    else if (currentTool === "dotted") {
+    else if (currentTool === "dotted")
+    {
+        ctx.globalCompositeOperation="source-over";
         isDrawing = true;
         ctx.beginPath();
         ctx.lineWidth = brushWidth;
@@ -59,7 +70,15 @@ const startDraw = () => {
         ctx.lineCap = "round";
         ctx.lineJoin = "round";
     }
-    else {
+    else if (currentTool === "eraser")
+    {
+        ctx.globalCompositeOperation="destination-out";
+        isDrawing = true;
+        ctx.beginPath();
+        ctx.lineWidth = brushWidth;
+    }
+    else
+    {
         return;
     }
 }
