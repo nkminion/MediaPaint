@@ -12,6 +12,8 @@ let isDrawing = false;
 let brushWidth = 5;
 let segmentSize = 0;
 let currentTool = "solid";
+let lastElement = null;
+let eventHandler = null;
 
 document.getElementById("tool-size").innerHTML = brushWidth
 document.getElementById("segment-size").innerHTML = segmentSize
@@ -49,52 +51,59 @@ function activateEraser() {
     document.getElementById("tool-status").innerHTML = "Eraser Size";
 }
 
+function unselect()
+{
+    let hoveredElements = document.getElementsByClassName('hover');
+    while (hoveredElements.length)
+        hoveredElements[0].classList.remove('hover');
+}
+
 function checkSelect(Xpos,Ypos) {
     let hoverElement = document.elementFromPoint(Xpos,Ypos);
     if (hoverElement === null) return;
 
-    let hoveredElements = document.getElementsByClassName('color-btn-hover');
-    while (hoveredElements.length)
-        hoveredElements[0].classList.remove('color-btn-hover');
-    hoveredElements = document.getElementsByClassName('clear-btn-hover');
-    while (hoveredElements.length)
-        hoveredElements[0].classList.remove('clear-btn-hover');
-    hoveredElements = document.getElementsByClassName('save-btn-hover');
-    while (hoveredElements.length)
-        hoveredElements[0].classList.remove('save-btn-hover');
-    hoveredElements = document.getElementsByClassName('save-btn-hover');
-    while (hoveredElements.length)
-        hoveredElements[0].classList.remove('save-btn-hover');
-    hoveredElements = document.getElementsByClassName('tool-btn-hover');
-    while (hoveredElements.length)
-        hoveredElements[0].classList.remove('tool-btn-hover');
-    
-    if (hoverElement.classList.contains("tool-btn"))
+    if (hoverElement !== lastElement)
     {
-        hoverElement.classList.add("tool-btn-hover");
-    }
-    else if (hoverElement.classList.contains("save-btn"))
-    {
-        hoverElement.classList.add("save-btn-hover");
-    }
-    else if (hoverElement.classList.contains("clear-btn"))
-    {
-        hoverElement.classList.add("clear-btn-hover");
-    }
-    else if (hoverElement.classList.contains("color-btn"))
-    {
-        hoverElement.classList.add("color-btn-hover");
+        if (lastElement)
+        {
+            if (eventHandler)
+            {
+                unselect();
+                lastElement.removeEventListener('transitionend',eventHandler);
+                eventHandler = null;
+            }
+        }
+        if (hoverElement)
+        {
+            eventHandler = function(e){
+                if (e.propertyName!=='transform')
+                {
+                    return;
+                }
+                const target = e.target;
+                target.click();
+                unselect();
+                hoverElement.removeEventListener('transitionend',eventHandler);
+                eventHandler = null;
+                lastElement = null;
+            }
+
+            function select()
+            {
+                hoverElement.classList.add("hover");
+            }
+
+            hoverElement.addEventListener('transitionend',eventHandler);
+            setTimeout(select(),10);
+        }
+        lastElement = hoverElement;
     }
 }
 
-const startDraw = () => {
+const startDraw = (x,y) => {
     if(currentTool === "solid")
     {
         ctx.globalCompositeOperation="source-over";
-        isDrawing = true;
-        ctx.beginPath();
-        ctx.lineWidth = brushWidth;
-        ctx.strokeStyle = colorPicker.value;
         ctx.setLineDash([])
         ctx.lineCap = "round";
         ctx.lineJoin = "round";
@@ -121,28 +130,30 @@ const startDraw = () => {
     {
         return;
     }
+    isDrawing = true;
+    ctx.beginPath();
+    ctx.lineWidth = brushWidth;
+    ctx.strokeStyle = colorPicker.value;
+    ctx.moveTo(x,y);
 }
 
-const drawing = (e) => {
+const drawing = (x,y) => {
     if (!isDrawing) return;
-    ctx.lineTo(e.offsetX, e.offsetY);
+    ctx.lineTo(x, y);
     ctx.stroke();
 }
 const stopDraw = () => {
     isDrawing = false;
 }
 
-function drawAt(x, y) {
 
-}
-
-function eraseAt(x, y) {
-
-}
+// Event Handlers
 
 canvas.addEventListener("mousedown", startDraw);
 canvas.addEventListener("mousemove", drawing);
 canvas.addEventListener("mouseup", stopDraw);
+
+
 
 cursorElement.style.position = "fixed";
 cursorElement.style.pointerEvents = "none";
@@ -172,14 +183,24 @@ function update() {
             const canvasY = screenY - canvasRect.top;
 
             if (gesture === "write") {
+                unselect();
                 cursorElement.style.backgroundColor = "cyan";
-                drawAt(canvasX, canvasY);
+                if (!isDrawing)
+                {
+                    startDraw(canvasX,canvasY);
+                }
+                else
+                {
+                    drawing(canvasX,canvasY);
+                }
             }
             else if (gesture === "hover") {
-                cursorElement.style.backgroundColor = "green";
+                stopDraw();
+                cursorElement.style.backgroundColor = "pink";
                 checkSelect(screenX,screenY);
             }
             else {
+                stopDraw();
                 cursorElement.style.backgroundColor = "yellow";
                 ctx.beginPath();
             }

@@ -82,7 +82,7 @@
             box-shadow: 0 0 0 2px #4299e1;
         }
 
-        .color-btn-hover {
+        .color-btn.hover {
             transform: rotate(180deg) scale(1.2);
             box-shadow: 0 0 0 2px #4299e1;
         }
@@ -118,7 +118,7 @@
             transform: rotate(360deg) scale(1.2);
         }
 
-        .clear-btn-hover {
+        .clear-btn.hover {
             background-color: #392d2d;
             border-color: #e53e3e;
             transform: rotate(360deg) scale(1.2);
@@ -144,7 +144,7 @@
             transform: rotate(360deg) scale(1.2);
         }
 
-        .save-btn-hover {
+        .save-btn.hover {
             background-color: #2a3828;
             border-color: #49e53e;
             transform: rotate(360deg) scale(1.2);
@@ -168,7 +168,7 @@
             transform: rotate(360deg) scale(1.2);
         }
 
-        .tool-btn-hover {
+        .tool-btn.hover {
             border-color: #4299e1;
             background-color: #27363f;
             transform: rotate(360deg) scale(1.2);
@@ -200,8 +200,8 @@
 
         #virtual-cursor {
             position: fixed;
-            width: 10px;
-            height: 10px;
+            width: 5px;
+            height: 5px;
             background-color: #49e53e;
             border: 2px snow;
             border-radius: 50%;
