@@ -154,7 +154,6 @@ canvas.addEventListener("mousemove", drawing);
 canvas.addEventListener("mouseup", stopDraw);
 
 
-
 cursorElement.style.position = "fixed";
 cursorElement.style.pointerEvents = "none";
 cursorElement.style.zIndex = "9999";
@@ -175,7 +174,8 @@ function update() {
 
             cursorElement.style.left = screenX + "px";
             cursorElement.style.top = screenY + "px";
-
+            const currentColor = colorPicker.value;
+            cursorElement.style.backgroundColor = currentColor;
             gestureOutput.innerText = "Gesture: " + (gesture || "none");
 
             const canvasRect = canvas.getBoundingClientRect();
@@ -184,7 +184,7 @@ function update() {
 
             if (gesture === "write") {
                 unselect();
-                cursorElement.style.backgroundColor = "cyan";
+                
                 if (!isDrawing)
                 {
                     startDraw(canvasX,canvasY);
@@ -196,12 +196,11 @@ function update() {
             }
             else if (gesture === "hover") {
                 stopDraw();
-                cursorElement.style.backgroundColor = "pink";
+                
                 checkSelect(screenX,screenY);
             }
             else {
                 stopDraw();
-                cursorElement.style.backgroundColor = "yellow";
                 ctx.beginPath();
             }
         } else {
