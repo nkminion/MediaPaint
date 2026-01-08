@@ -212,4 +212,22 @@ function update() {
     requestAnimationFrame(update);
 }
 
+function increaseBrushSize()
+{
+    if (brushWidth < 10)
+    {
+        brushWidth += 1;
+    }
+    document.getElementById("tool-size").innerHTML = brushWidth;
+}
+
+function decreaseBrushSize()
+{
+    if (brushWidth > 1)
+    {
+        brushWidth -= 1;
+    }
+    document.getElementById("tool-size").innerHTML = brushWidth;
+}
+
 requestAnimationFrame(update);
