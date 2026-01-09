@@ -205,4 +205,11 @@
             background-color: #49e53e;
             border: 2px snow;
             border-radius: 50%;
+            transform: translate(-50%,-50%);
+        }
+
+        .sizechange
+        {
+            display: flex;
+            gap: 15px;
         }

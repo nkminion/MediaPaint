@@ -219,6 +219,8 @@ function increaseBrushSize()
         brushWidth += 1;
     }
     document.getElementById("tool-size").innerHTML = brushWidth;
+    cursorElement.style.height = `${brushWidth}px`;
+    cursorElement.style.width = `${brushWidth}px`;
 }
 
 function decreaseBrushSize()
@@ -228,6 +230,8 @@ function decreaseBrushSize()
         brushWidth -= 1;
     }
     document.getElementById("tool-size").innerHTML = brushWidth;
+    cursorElement.style.height = `${brushWidth}px`;
+    cursorElement.style.width = `${brushWidth}px`;
 }
 
 requestAnimationFrame(update);
